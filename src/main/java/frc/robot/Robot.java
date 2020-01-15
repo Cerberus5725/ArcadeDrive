@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.TimedRobot;
 
 /**
@@ -17,6 +18,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static DriveTrain drivetrain;
   public static Intake intake;
+  public boolean forward = true;
 
 
 
@@ -30,13 +32,28 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    // Drive with arcade drive.
-    // That means that the Y axis drives forward
-    // and backward, and the X turns left and right.
-    //robotDriveFront.arcadeDrive(m_stick.getY(), m_stick.getX());
-    //leftFrontMotor.setSafetyEnabled(true);
-    drivetrain.driveWithJoysticks(Robot.oi.xBox.getX(), -Robot.oi.xBox.getY(), 0.85);
-    
-    //robotDriveBack.arcadeDrive(m_stick.getY(), m_stick.getX());
+    drivetrain.driveWithJoysticks(Robot.oi.xBox.getX(), -Robot.oi.xBox.getY());
+    if(Robot.oi.xBox.getRawButtonPressed(1))
+    {
+      if(forward == false)
+      {
+        intake.intakeStop();
+        forward = true;
+      }
+      intake.ballIntake();
+    }
+    else if(Robot.oi.xBox.getRawButtonPressed(4))
+    {
+      if(forward == true)
+      {
+        intake.intakeStop();
+        forward = false;
+      }
+      intake.ballOuttake();
+    }
+    else if(Robot.oi.xBox.getRawButtonPressed(2))
+    {
+        intake.intakeStop();
+    }
   }
 }

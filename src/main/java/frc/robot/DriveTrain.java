@@ -9,7 +9,7 @@ private Spark leftBackMotor;
 private Spark rightFrontMotor;
 private Spark rightBackMotor;
 
-public double motorSpeed = 0.85;
+public double motorSpeed = 0.65;
 
 
     public DriveTrain() {
@@ -26,13 +26,13 @@ rightBackMotor = new Spark(3);
 rightBackMotor.setInverted(false);
 }
 
-public void driveWithJoysticks(double joystickX, double joystickY, double dSpeed)
+public void driveWithJoysticks(double joystickX, double joystickY)
 	{
 
         double LeftSpeed;
         double RightSpeed;
-        LeftSpeed = (joystickX + joystickY) *dSpeed;
-        RightSpeed = (-joystickX + joystickY) *dSpeed;
+        LeftSpeed = (joystickX + joystickY) *motorSpeed;
+        RightSpeed = (-joystickX + joystickY) *motorSpeed;
         if(LeftSpeed >= 1.0)
         {
             LeftSpeed = 1.0;
@@ -41,10 +41,10 @@ public void driveWithJoysticks(double joystickX, double joystickY, double dSpeed
         {
             RightSpeed = 1.0;
         }
-       // leftFrontMotor.set(LeftSpeed);
-        leftBackMotor.set(LeftSpeed);
-        //rightFrontMotor.set(RightSpeed);
-        rightBackMotor.set(RightSpeed);
+         leftFrontMotor.set(LeftSpeed);
+         leftBackMotor.set(LeftSpeed);
+         rightFrontMotor.set(RightSpeed);
+         rightBackMotor.set(RightSpeed);
     }
     
 

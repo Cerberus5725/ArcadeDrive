@@ -16,20 +16,23 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Intake {
 
     private Spark intakeMotor;
+    public double intakeSpeed = 0.8;
 
     public Intake()
     {
         intakeMotor = new Spark(6);
     }
-    public Command ballIntake()
+    public void ballIntake()
     {
-        intakeMotor.set(1.0);
-        return null;
+        intakeMotor.set(intakeSpeed);
     }
-    public Command ballOuttake()
+    public void ballOuttake()
     {
-        intakeMotor.set(-1.0);
-        return null;
+        intakeMotor.set(-intakeSpeed);
+    }
+    public void intakeStop()
+    {
+        intakeMotor.set(0);
     }
 
 }
