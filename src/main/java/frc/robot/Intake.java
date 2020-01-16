@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Intake {
 
     private Spark intakeMotor;
-    public double intakeSpeed = 0.8;
+    public double intakeSpeed = 0.85;
 
     public Intake()
     {
